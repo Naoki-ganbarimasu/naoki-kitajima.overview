@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from './three/examples/jsm/controls/OrbitControls';
-import { FontLoader } from './three/examples/jsm/loaders/FontLoader';
-import { TextGeometry } from './three/examples/jsm/geometries/TextGeometry';
+import { OrbitControls } from '../../three/examples/jsm/controls/OrbitControls';
+import { FontLoader } from '../../three/examples/jsm/loaders/FontLoader';
+import { TextGeometry } from '../../three/examples/jsm/geometries/TextGeometry';
 
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -65,15 +65,24 @@ const ThreeScene: React.FC = () => {
       const boxGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
       const boxMaterial = new THREE.MeshStandardMaterial({ color: 0x008000 }); // 緑色
 
-      for (let i = 0; i < 300; i++) {
+      for (let i = 0; i < 50; i++) {
         const box = new THREE.Mesh(boxGeometry, boxMaterial);
 
         box.position.x = (Math.random() - 0.5) * 10;
         box.position.y = (Math.random() - 0.5) * 10;
         box.position.z = (Math.random() - 1.1) * 5;
         box.rotation.set(10, 10, 10)
-        box.rotation.x = Math.random() * Math.PI;
-        box.rotation.y = Math.random() * Math.PI;
+        // box.rotation.x = Math.random() * Math.PI;
+        // box.rotation.y = Math.random() * Math.PI;
+        const clock = new THREE.Clock()
+    const tick = () => {
+      const elapsedTime = clock.getElapsedTime()
+      box.rotation.x = elapsedTime
+      box.rotation.y = elapsedTime
+      window.requestAnimationFrame(tick)
+      renderer.render(scene, camera)
+    }
+    tick()
 
         const scale = Math.random();
         box.scale.set(scale, scale, scale);
