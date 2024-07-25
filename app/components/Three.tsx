@@ -25,6 +25,7 @@ const ThreeScene: React.FC = () => {
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0xdcdcdc);
     if (mountRef.current) {
       mountRef.current.appendChild(renderer.domElement);
     }
@@ -65,30 +66,60 @@ const ThreeScene: React.FC = () => {
       const boxGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
       const boxMaterial = new THREE.MeshStandardMaterial({ color: 0x008000 }); // 緑色
 
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 120; i++) {
         const box = new THREE.Mesh(boxGeometry, boxMaterial);
 
         box.position.x = (Math.random() - 0.5) * 10;
-        box.position.y = (Math.random() - 0.5) * 10;
+        box.position.y = (Math.random() - 0.5) * 4;
         box.position.z = (Math.random() - 1.1) * 5;
-        box.rotation.set(10, 10, 10)
-        // box.rotation.x = Math.random() * Math.PI;
-        // box.rotation.y = Math.random() * Math.PI;
+        box.rotation.set(20, 20, 20)
+        box.rotation.x = Math.random() * Math.PI;
+        box.rotation.y = Math.random() * Math.PI;
         const clock = new THREE.Clock()
-    const tick = () => {
-      const elapsedTime = clock.getElapsedTime()
-      box.rotation.x = elapsedTime
-      box.rotation.y = elapsedTime
-      window.requestAnimationFrame(tick)
-      renderer.render(scene, camera)
-    }
-    tick()
+    // const tick = () => {
+    //   const elapsedTime = clock.getElapsedTime()
+    //   box.rotation.x = elapsedTime
+    //   box.rotation.y = elapsedTime
+    //   window.requestAnimationFrame(tick)
+    //   renderer.render(scene, camera)
+    // }
+    // tick()
+
+    const sphereGeometry = new THREE.SphereGeometry(3, 160, 160);
+      const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 }); // 赤色
+      const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+      sphere.position.set(0, 1, -4);
+      scene.add(sphere);
 
         const scale = Math.random();
         box.scale.set(scale, scale, scale);
 
         scene.add(box);
       }
+
+      
+      const starShape = new THREE.Shape();
+      const outerRadius = 1;
+      const innerRadius = 0.5;
+      const points = 5;
+      
+      for (let i = 0; i < points * 2; i++) {
+        const angle = (i / (points * 2)) * Math.PI * 2;
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        if (i === 0) {
+          starShape.moveTo(x, y);
+        } else {
+          starShape.lineTo(x, y);
+        }
+      }
+      starShape.closePath();
+      const starGeometry = new THREE.ShapeGeometry(starShape);
+      const starMaterial = new THREE.MeshStandardMaterial({ color: 0xffd700 }); // 金色
+      const star = new THREE.Mesh(starGeometry, starMaterial);
+      star.position.set(0, 0, -0.5);
+      scene.add(star);
 
       const animate = () => {
         controls.update();
