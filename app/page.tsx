@@ -6,7 +6,7 @@ import Three from "./components/Three";
 export default function Home() {
   return (
    <div>
-    <div>
+    <div className="w-full">
     <Three/>
     </div>
     <div>
