@@ -48,7 +48,7 @@ const ThreeScene: React.FC = () => {
     fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font: string) => {
       const textGeometry = new TextGeometry('naoki kitajima', {
         font: font,
-        size: 0.7,
+        size: 0.5,
         height: 0.2,
         curveSegments: 5,
         bevelEnabled: true,
@@ -66,30 +66,38 @@ const ThreeScene: React.FC = () => {
       const boxGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
       const boxMaterial = new THREE.MeshStandardMaterial({ color: 0x008000 }); // 緑色
 
-      for (let i = 0; i < 120; i++) {
+      const getRandomPositionX = (): number  => {
+        // 0か1をランダムに選ぶ
+        const sign = Math.random() < 0.5 ? -0.8 : 0.8;
+        // 1以上の値をランダムに生成
+        return sign * (1 + Math.random() * 4.5); // 1 to 5.5
+      }
+
+      const getRandomPositionY = (): number  => {
+        // 0か1をランダムに選ぶ
+        const sign = Math.random() < 0.5 ? -0.3 : 0.3;
+        // 1以上の値をランダムに生成
+        return sign * (1 + Math.random() * 4.5); // 1 to 5.5
+      }
+
+      for (let i = 0; i < 25; i++) {
         const box = new THREE.Mesh(boxGeometry, boxMaterial);
 
-        box.position.x = (Math.random() - 0.5) * 10;
-        box.position.y = (Math.random() - 0.5) * 4;
-        box.position.z = (Math.random() - 1.1) * 5;
+        box.position.x = getRandomPositionX();
+        box.position.y = getRandomPositionY();
+        // box.position.z = (Math.random() - 1.1) * 5;
         box.rotation.set(20, 20, 20)
         box.rotation.x = Math.random() * Math.PI;
         box.rotation.y = Math.random() * Math.PI;
         const clock = new THREE.Clock()
-    // const tick = () => {
-    //   const elapsedTime = clock.getElapsedTime()
-    //   box.rotation.x = elapsedTime
-    //   box.rotation.y = elapsedTime
-    //   window.requestAnimationFrame(tick)
-    //   renderer.render(scene, camera)
-    // }
-    // tick()
-
-    const sphereGeometry = new THREE.SphereGeometry(3, 160, 160);
-      const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xff0000 }); // 赤色
-      const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-      sphere.position.set(0, 1, -4);
-      scene.add(sphere);
+    const tick = () => {
+      const elapsedTime = clock.getElapsedTime()
+      box.rotation.x = elapsedTime
+      box.rotation.y = elapsedTime
+      window.requestAnimationFrame(tick)
+      renderer.render(scene, camera)
+    }
+    tick()
 
         const scale = Math.random();
         box.scale.set(scale, scale, scale);
@@ -149,7 +157,7 @@ const ThreeScene: React.FC = () => {
     };
   }, []);
 
-  return <div ref={mountRef} className='w-full h-full' />;
+  return <div ref={mountRef} className='w-full h-4/5' />;
 };
 
 export default ThreeScene;

@@ -1,22 +1,21 @@
 'use client'
 
-import Image from "next/image";
 import Three from "./components/Three";
+import Profile from "./components/Profile";
+import Skills from "./components/Skills";
 
 export default function Home() {
   return (
-   <div>
-    <div className="w-full">
-    <Three/>
+    <main className="flex flex-col w-full h-screen">
+    <div className="flex-grow">
+      <Three />
+    </div>
+    <div className="flex-grow">
+      <Profile />
     </div>
     <div>
-    <Image
-      src="/vercel.svg"
-      alt="Vercel Logo"
-      width={72}
-      height={16}
-    />
+      <Skills />
     </div>
-   </div>
+  </main>
   );
 }
