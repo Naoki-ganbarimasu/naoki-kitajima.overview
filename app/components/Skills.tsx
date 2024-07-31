@@ -19,7 +19,7 @@ const Skills = () => {
                 <Image className='hover:scale-110' src='/html.svg' alt='html' width={100} height={100} />
                 <Image className='hover:scale-110' src='/css.svg' alt='css' width={100} height={100} />
                 <Image className='hover:scale-110' src='/react.svg' alt='react' width={100} height={100} />
-                <Image className='hover:scale-110' src='/next-js.png' alt='next.js' width={100} height={100} />
+                <Image className='hover:scale-110' src='/nextjs.svg' alt='next.js' width={100} height={100} />
             </div>
         </div>
             <div className='border-2 shadow-md rounded-lg justify-center items-center border-green-500 m-3'>

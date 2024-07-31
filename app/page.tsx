@@ -4,6 +4,7 @@ import Three from "./components/Three";
 import Profile from "./components/Profile";
 import Skills from "./components/Skills";
 import Works from "./components/Works";
+import Active from "./components/Active";
 
 export default function Home() {
   return (
@@ -20,6 +21,10 @@ export default function Home() {
     <div>
       <Works/>
     </div>
+    <div>
+      <Active/>
+    </div>
+
   </main>
   );
 }

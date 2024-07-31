@@ -6,6 +6,7 @@ const Works = () => {
   return (
     <main className='mx-8'>
         <h1 className='text-3xl text-center'>Works</h1>
+        <div className='hover:bg-gray-200 transition-transform transform hover:scale-95'>
         <Link className='hover:bg-gray-200' href='https://naotech-academy.vercel.app/'>
             <div className='border-2 border-green-500 shadow-md rounded-lg hover:bg-gray-200'>
             <h2 className='text-2xl bg-green-500 text-white'>Naotech Academy</h2>
@@ -22,10 +23,12 @@ const Works = () => {
             <article className='max-w-xl'>
             ページが多いことからSEO対策を考慮し、next.jsを使用。データベースはsupabaseを使用し、データベースの設計や認証を行った。
             </article>
+            <h1 className='text-center text-xl mt-5'></h1>
             </div>
             </div>
             </div>
         </Link>
+        </div>
     </main>
   )
 }
