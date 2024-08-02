@@ -1,4 +1,4 @@
-import { Http2ServerRequest } from 'http2'
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -76,9 +76,11 @@ Apple MusicやSpotifyとは違って
             </h3>
            <Image className='mx-auto' src='/microcms.svg' alt='microcms' width={90} height={90} />
         </div>
+        <h3 className='text-xl fornt-bold'>技術選定</h3>
+        <article>
+          フロントエンドはReact/Next.jsを使用し、バックエンドはmicroCMSを使用しました。
+        </article>
           </div>
-
-
       </div>
     </main>
   )
