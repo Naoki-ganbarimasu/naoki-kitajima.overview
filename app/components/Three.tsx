@@ -8,18 +8,20 @@ import { TextGeometry } from '../../three/examples/jsm/geometries/TextGeometry';
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
+
   useEffect(() => {
     const sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
     };
+    
 
     // Scene
     const scene = new THREE.Scene();
 
     // Camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.5, 100);
-    camera.position.set(0, -1, 3);
+    camera.position.set(0, -0.5, 3);
 
     // Renderer
     const renderer = new THREE.WebGLRenderer();
@@ -40,7 +42,7 @@ const ThreeScene: React.FC = () => {
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff,  3);
-    directionalLight.position.set(5, 5, 5);
+    directionalLight.position.set(0, 3, 5);
     scene.add(directionalLight);
 
     // Fonts
@@ -80,16 +82,18 @@ const ThreeScene: React.FC = () => {
         return sign * (1 + Math.random() * 4.5); // 1 to 5.5
       }
 
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 20; i++) {
         const box = new THREE.Mesh(boxGeometry, boxMaterial);
 
         box.position.x = getRandomPositionX();
         box.position.y = getRandomPositionY();
-        // box.position.z = (Math.random() - 1.1) * 5;
+
         box.rotation.set(20, 20, 20)
         box.rotation.x = Math.random() * Math.PI;
         box.rotation.y = Math.random() * Math.PI;
         const clock = new THREE.Clock()
+
+
     const tick = () => {
       const elapsedTime = clock.getElapsedTime()
       box.rotation.x = elapsedTime
@@ -104,30 +108,17 @@ const ThreeScene: React.FC = () => {
 
         scene.add(box);
       }
+      
+      const contentBboxGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+      const contentBoxMaterial = new THREE.MeshStandardMaterial({ color: 0x99FF33 });
+      const contentBox =  new THREE.Mesh(contentBboxGeometry, contentBoxMaterial);
 
-      
-      const starShape = new THREE.Shape();
-      const outerRadius = 1;
-      const innerRadius = 0.5;
-      const points = 5;
-      
-      for (let i = 0; i < points * 2; i++) {
-        const angle = (i / (points * 2)) * Math.PI * 2;
-        const radius = i % 2 === 0 ? outerRadius : innerRadius;
-        const x = Math.cos(angle) * radius;
-        const y = Math.sin(angle) * radius;
-        if (i === 0) {
-          starShape.moveTo(x, y);
-        } else {
-          starShape.lineTo(x, y);
-        }
-      }
-      starShape.closePath();
-      const starGeometry = new THREE.ShapeGeometry(starShape);
-      const starMaterial = new THREE.MeshStandardMaterial({ color: 0xffd700 }); // 金色
-      const star = new THREE.Mesh(starGeometry, starMaterial);
-      star.position.set(0, 0, -0.5);
-      scene.add(star);
+       contentBox.position.x = -2;
+       contentBox.position.y = -1;
+       contentBox.position.z = 0;
+       scene.add(contentBox);
+
+
 
       const animate = () => {
         controls.update();
@@ -157,7 +148,8 @@ const ThreeScene: React.FC = () => {
     };
   }, []);
 
-  return <div ref={mountRef} className='w-full h-4/5' />;
+
+  return <div ref={mountRef} className='w-full h-3/5' />;
 };
 
 export default ThreeScene;

@@ -1,13 +1,17 @@
+import { TextGeometry } from '@/three/examples/jsm/geometries/TextGeometry'
+import { FontLoader } from '@/three/examples/jsm/loaders/FontLoader'
 import type { NextPage } from 'next'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-const SetThree: NextPage = () => {
-  let canvas: HTMLElement
+const Loading: NextPage = () => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
+
   useEffect(() => {
-    if (canvas) return
+    if (!canvasRef.current) return
+
     // canvasを取得
-    canvas = document.getElementById('canvas')!
+    const canvas = canvasRef.current
 
     // シーン
     const scene = new THREE.Scene()
@@ -28,7 +32,7 @@ const SetThree: NextPage = () => {
 
     // レンダラー
     const renderer = new THREE.WebGLRenderer({
-      canvas: canvas || undefined,
+      canvas: canvas,
       antialias: true,
       alpha: true
     })
@@ -36,20 +40,43 @@ const SetThree: NextPage = () => {
     renderer.setPixelRatio(window.devicePixelRatio)
 
     // ボックスジオメトリー
-    const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
+    const boxGeometry = new THREE.BoxGeometry(0.3, 0.3, 0.3)
     const boxMaterial = new THREE.MeshLambertMaterial({
       color: '#2497f0'
     })
     const box = new THREE.Mesh(boxGeometry, boxMaterial)
-    box.position.z = -5
+    box.position.set(-1,0,-3)
     box.rotation.set(10, 10, 10)
     scene.add(box)
+
+    // フォントロード
+    const fontLoader = new FontLoader()
+    fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font: string) => {
+      const textGeometry = new TextGeometry('Loading', {
+        font: font,
+        size: 0.5,
+        height: 0.2,
+        curveSegments: 5,
+        bevelEnabled: true,
+        bevelThickness: 0.03,
+        bevelSize: 0.02,
+        bevelOffset: 0,
+        bevelSegments: 4,
+      })
+      textGeometry.center()
+
+      const textMaterial = new THREE.MeshStandardMaterial({ color: 0x99FF33 })
+      const text = new THREE.Mesh(textGeometry, textMaterial)
+      text.position.set(0 ,0,-5)
+
+      scene.add(text)
+    })
 
     // ライト
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7)
     scene.add(ambientLight)
-    const pointLight = new THREE.PointLight(0xffffff, 0.2)
-    pointLight.position.set(1, 2, 3)
+    const pointLight = new THREE.PointLight(0xffffff, 1)
+    pointLight.position.set(0,0,0)
     scene.add(pointLight)
 
     // アニメーション
@@ -73,11 +100,8 @@ const SetThree: NextPage = () => {
       renderer.setPixelRatio(window.devicePixelRatio)
     })
   }, [])
-  return (
-    <>
-      <canvas id="canvas"></canvas>
-    </>
-  )
+
+  return <canvas ref={canvasRef} id="canvas"></canvas>
 }
 
-export default SetThree
+export default Loading
