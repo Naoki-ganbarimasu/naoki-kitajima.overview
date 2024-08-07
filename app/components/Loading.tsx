@@ -1,8 +1,7 @@
-import { TextGeometry } from '@/three/examples/jsm/geometries/TextGeometry'
-import { FontLoader } from '@/three/examples/jsm/loaders/FontLoader'
 import type { NextPage } from 'next'
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { FontLoader, TextGeometry } from 'three/examples/jsm/Addons.js'
 
 const Loading: NextPage = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
@@ -51,7 +50,7 @@ const Loading: NextPage = () => {
 
     // フォントロード
     const fontLoader = new FontLoader()
-    fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font: string) => {
+    fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
       const textGeometry = new TextGeometry('Loading', {
         font: font,
         size: 0.5,

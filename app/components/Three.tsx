@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { FontLoader, OrbitControls, TextGeometry } from 'three/examples/jsm/Addons.js';
 import Stats from 'stats.js';
+import { FontLoader, OrbitControls, TextGeometry } from 'three/examples/jsm/Addons.js';
 
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
