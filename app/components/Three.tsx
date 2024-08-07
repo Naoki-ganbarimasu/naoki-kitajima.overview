@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import { OrbitControls } from '../../three/examples/jsm/controls/OrbitControls';
-import { FontLoader } from '../../three/examples/jsm/loaders/FontLoader';
-import { TextGeometry } from '../../three/examples/jsm/geometries/TextGeometry';
+import { FontLoader, OrbitControls, TextGeometry } from 'three/examples/jsm/Addons.js';
+import Stats from 'stats.js';
 
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -47,7 +46,7 @@ const ThreeScene: React.FC = () => {
 
     // Fonts
     const fontLoader = new FontLoader();
-    fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font: string) => {
+    fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
       const textGeometry = new TextGeometry('naoki kitajima', {
         font: font,
         size: 0.5,
