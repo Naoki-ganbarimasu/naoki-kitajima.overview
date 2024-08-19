@@ -6,6 +6,11 @@ const Skills = () => {
     <main className='mt-3'>
         <h1 className='text-3xl text-center'>Skills</h1>
         <div className='mx-3 p-3 flex flex-wrap'>
+            <div className='bg-green-700 pr-5'>
+                <div className='bg-green-500'>aaaaaaa
+
+                </div>
+            </div>
             <div className='border-2 shadow-md rounded-lg justify-center items-center border-green-500 m-3'>
             <h2 className='text-2xl text-white bg-green-500 border-b-2 mb-3'>Languages</h2>
             <div className='flex mx-5 mb-5'>
@@ -44,7 +49,7 @@ const Skills = () => {
                 <Image className='hover:scale-110' src='/firebase.svg' alt='firebase' width={100} height={100} />
                 <Image className='hover:scale-110' src='/vercel.svg' alt='vercel' width={100} height={100} />
                 <Image className='hover:scale-110' src='/figma.svg' alt='figma' width={100} height={100} />
-                <Image src='/stripe.svg' alt='stripe' width={150} height={100} /> 
+                <Image className='hover:scale-110' src='/stripe.svg' alt='stripe' width={150} height={100} /> 
             </div>
             </div>
             </div>

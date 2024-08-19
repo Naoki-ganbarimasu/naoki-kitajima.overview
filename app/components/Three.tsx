@@ -1,26 +1,26 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import Stats from 'stats.js';
 import { FontLoader, OrbitControls, TextGeometry } from 'three/examples/jsm/Addons.js';
 
 const ThreeScene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
-
 
   useEffect(() => {
     const sizes = {
       width: window.innerWidth,
       height: window.innerHeight,
     };
-    
 
     // Scene
     const scene = new THREE.Scene();
 
     // Camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.5, 100);
-    camera.position.set(0, -0.5, 3);
+    const setCameraPosition = () => {
+      camera.position.set(0, -0.5, Math.max(3000/sizes.width, 3));
+    };
+    setCameraPosition();
 
     // Renderer
     const renderer = new THREE.WebGLRenderer();
@@ -33,14 +33,17 @@ const ThreeScene: React.FC = () => {
 
     // Controls
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.enableZoom = false;
+    controls.enableDamping = false;  // 慣性を無効化
+    controls.enableZoom = false;     // ズームを無効化
+    controls.enableRotate = false;   // 回転を無効化
+    controls.enablePan = false;      // パン操作を無効化
+    
 
     // Lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff,  3);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
     directionalLight.position.set(0, 3, 5);
     scene.add(directionalLight);
 
@@ -67,19 +70,15 @@ const ThreeScene: React.FC = () => {
       const boxGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
       const boxMaterial = new THREE.MeshStandardMaterial({ color: 0x008000 }); // 緑色
 
-      const getRandomPositionX = (): number  => {
-        // 0か1をランダムに選ぶ
+      const getRandomPositionX = (): number => {
         const sign = Math.random() < 0.5 ? -0.8 : 0.8;
-        // 1以上の値をランダムに生成
-        return sign * (1 + Math.random() * 4.5); // 1 to 5.5
-      }
+        return sign * (1 + Math.random() * 4.5);
+      };
 
-      const getRandomPositionY = (): number  => {
-        // 0か1をランダムに選ぶ
+      const getRandomPositionY = (): number => {
         const sign = Math.random() < 0.5 ? -0.3 : 0.3;
-        // 1以上の値をランダムに生成
-        return sign * (1 + Math.random() * 4.5); // 1 to 5.5
-      }
+        return sign * (1 + Math.random() * 4.5);
+      };
 
       for (let i = 0; i < 20; i++) {
         const box = new THREE.Mesh(boxGeometry, boxMaterial);
@@ -87,37 +86,35 @@ const ThreeScene: React.FC = () => {
         box.position.x = getRandomPositionX();
         box.position.y = getRandomPositionY();
 
-        box.rotation.set(20, 20, 20)
+        box.rotation.set(20, 20, 20);
         box.rotation.x = Math.random() * Math.PI;
         box.rotation.y = Math.random() * Math.PI;
-        const clock = new THREE.Clock()
 
+        const clock = new THREE.Clock();
 
-    const tick = () => {
-      const elapsedTime = clock.getElapsedTime()
-      box.rotation.x = elapsedTime
-      box.rotation.y = elapsedTime
-      window.requestAnimationFrame(tick)
-      renderer.render(scene, camera)
-    }
-    tick()
+        const tick = () => {
+          const elapsedTime = clock.getElapsedTime();
+          box.rotation.x = elapsedTime;
+          box.rotation.y = elapsedTime;
+          window.requestAnimationFrame(tick);
+          renderer.render(scene, camera);
+        };
+        tick();
 
         const scale = Math.random();
         box.scale.set(scale, scale, scale);
 
         scene.add(box);
       }
-      
+
       const contentBboxGeometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
       const contentBoxMaterial = new THREE.MeshStandardMaterial({ color: 0x99FF33 });
-      const contentBox =  new THREE.Mesh(contentBboxGeometry, contentBoxMaterial);
+      const contentBox = new THREE.Mesh(contentBboxGeometry, contentBoxMaterial);
 
-       contentBox.position.x = -2;
-       contentBox.position.y = -1;
-       contentBox.position.z = 0;
-       scene.add(contentBox);
-
-
+      contentBox.position.x = -2;
+      contentBox.position.y = -1;
+      contentBox.position.z = 0;
+      scene.add(contentBox);
 
       const animate = () => {
         controls.update();
@@ -133,6 +130,7 @@ const ThreeScene: React.FC = () => {
       sizes.height = window.innerHeight;
       camera.aspect = sizes.width / sizes.height;
       camera.updateProjectionMatrix();
+      setCameraPosition();
       renderer.setSize(sizes.width, sizes.height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     };
@@ -147,8 +145,7 @@ const ThreeScene: React.FC = () => {
     };
   }, []);
 
-
-  return <div ref={mountRef} className='w-full h-3/5' />;
+  return <div ref={mountRef} className="flex-1 max-w-full max-h-full" />;
 };
 
 export default ThreeScene;

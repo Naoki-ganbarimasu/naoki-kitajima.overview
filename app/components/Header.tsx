@@ -1,18 +1,37 @@
+"use client";
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Header = () => {
+  const [bgColor, setBgColor] = useState('bg-transparent');
+
+  const handleScroll = () => {
+    if (window.scrollY > 80) {
+      setBgColor('bg-white shadow-md');  // スクロールしたら背景色を白にし、影を追加
+    } else {
+      setBgColor('bg-transparent');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    
-        <header className="fixed top-0 left-0 w-full bg-white shadow-md z-10 mt-4 py-7 mx-5 rounded-full">
-      <div className='flex justify-center mx-5'>
-        <Link href='/'>Top</Link>
-      <h1 className='mx-auto'>Profiles</h1>
-        <h1 className='mx-auto'>Skills</h1>
-        <h1　className='mx-auto'>Works</h1>
-        <h1　className='mx-auto'>About</h1>
+    <header className={`fixed top-0 left-0 w-full ${bgColor} z-10 transition-colors duration-300`}>
+      <div className='flex justify-between items-center mx-5 py-4'>
+        <Link href='/' className='text-lg font-bold'>Top</Link>
+        <nav className='flex space-x-4'>
+          <Link href='/profiles' className='text-lg'>Profiles</Link>
+          <Link href='/skills' className='text-lg'>Skills</Link>
+          <Link href='/works' className='text-lg'>Works</Link>
+          <Link href='/about' className='text-lg'>About</Link>
+        </nav>
       </div>
-        </header>
+    </header>
   )
 }
 
