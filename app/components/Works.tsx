@@ -1,11 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Title from './Title'
 
 const Works = () => {
   return (
-    <main className='mx-8'>
-        <h1 className='text-3xl text-center'>Works</h1>
+    <main>
+      <Title title='Works' />
         <div className='hover:bg-gray-200 transition-transform transform hover:scale-95'>
         <Link className='hover:bg-gray-200' href='https://naotech-academy.vercel.app/'>
             <div className='border-2 border-green-500 shadow-md rounded-lg hover:bg-gray-200'>

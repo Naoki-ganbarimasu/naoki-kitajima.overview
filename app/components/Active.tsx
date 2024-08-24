@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
+import Title from './Title'
 
 const Active = () => {
   return (
     <main>
-        <h1 className='text-center'>Active</h1>
+        <Title title='Active' />
         <div>
         <h2>Hackathon</h2>
     <div className='border-2 border-green-500 shadow-md rounded-lg hover:bg-gray-200'>
