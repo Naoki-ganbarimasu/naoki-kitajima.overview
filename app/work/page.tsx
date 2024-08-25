@@ -30,19 +30,3 @@ export default function Home({ works }: WorksProps) {
   )
   }
 
-  // (
-
-//     <div>
-//       {works.map((work:Work) => (
-//         <Link href={`work/${work.id}`} key={work.id}>
-//           <div key={work.id}>
-//             <h1>{work.title}</h1>
-//             <p>{work.descarticle}</p>
-//           </div>
-//         </Link>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Home;
