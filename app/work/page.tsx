@@ -1,6 +1,5 @@
 import { client } from "@/libs/microcmsClient";
 import { Work } from "@/libs/microcmsResources";
-import { div } from "three/examples/jsm/nodes/Nodes.js";
 
 // データを取得する関数
 export const getWorks = async () => {
