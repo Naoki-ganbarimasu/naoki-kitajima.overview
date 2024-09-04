@@ -1,3 +1,4 @@
+"use strict";
 import Image from "next/image";
 import Title from "./Title";
 

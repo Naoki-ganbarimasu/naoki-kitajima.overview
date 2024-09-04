@@ -1,6 +1,7 @@
-import Image from 'next/image'
-import React from 'react'
-import Title from './Title'
+"use strict";
+import Image from "next/image";
+import React from "react";
+import Title from "./Title";
 
 const Profile = () => {
   return (
@@ -24,6 +25,6 @@ const Profile = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Profile
+export default Profile;

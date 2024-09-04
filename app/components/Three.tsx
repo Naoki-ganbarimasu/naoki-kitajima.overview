@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { FontLoader, OrbitControls, TextGeometry } from 'three/examples/jsm/Addons.js';
 
-const ThreeScene: React.FC = () => {
+const Three: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -148,4 +148,5 @@ const ThreeScene: React.FC = () => {
   return <div ref={mountRef} className="flex-1 max-w-full max-h-full" />;
 };
 
-export default ThreeScene;
+export default Three;
+

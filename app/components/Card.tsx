@@ -1,11 +1,13 @@
-import Image from 'next/image'
-import React from 'react'
+"use strict";
+
+import Image from "next/image";
+import React from "react";
 
 type CardProps = {
-    title: string;
-    article: string;
+  title: string;
+  article: string;
 };
-    
+
 const Card: React.FC<CardProps> = ({ title, article }) => {
   return (
     <div className="flex flex-col gap-5">
@@ -16,10 +18,10 @@ const Card: React.FC<CardProps> = ({ title, article }) => {
         width={200}
         height={200}
       />
-          <h2>{title}</h2>
-          <article>{article}</article>
+      <h2>{title}</h2>
+      <article>{article}</article>
     </div>
   );
 };
 
-export default Card
+export default Card;

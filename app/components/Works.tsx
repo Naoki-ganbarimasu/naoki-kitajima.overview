@@ -1,20 +1,20 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-import Title from './Title'
-import { getList } from '@/libs/microcmsResources'
+"use strict";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import Title from "./Title";
+import { works } from "@/data/works";
 
-const Works = async () => {
-  const { contents } = await getList();
+const Works = () => {
   return (
     <main>
       <Title title="Works" />
       <div className="hover:bg-gray-200 transition-transform transform hover:scale-95">
         <ul>
-          {contents.map((post) => {
+          {works.map((work) => {
             return (
-              <li key={post.id}>
-                <Link href={`work/${post.id}`}>{post.title}</Link>
+              <li key={work.id}>
+                <Link href={`work/${work.id}`}>{work.title}</Link>
               </li>
             );
           })}
@@ -22,6 +22,6 @@ const Works = async () => {
       </div>
     </main>
   );
-}
+};
 
-export default Works
+export default Works;

@@ -1,38 +1,28 @@
-import { notFound } from "next/navigation";
-import parse from "html-react-parser";
-import { getDetail, getList } from "@/libs/microcmsResources";
+"use strict";
 
-export async function generateStaticParams() {
-  const { contents } = await getList();
+import { useRouter } from "next/router";
+import { works } from "@/data/works";
+import { workDetails } from "@/data/worksDetails";
 
-  const paths = contents.map((post) => {
-    return {
-      postId: post.id
-    };
-  });
+export default function WorkPage() {
+  const router = useRouter();
+  const { id } = router.query;
 
-  return [...paths];
-}
+  const work = works.find((work) => work.id === Number(id));
+  const details = workDetails.filter((detail) => detail.work_id === Number(id));
 
-export default async function StaticDetailPage({
-  params: { postId }
-}: {
-  params: { postId: string };
-}) {
-  const post = await getDetail(postId);
-
-  // ページの生成された時間を取得
-  const time = new Date().toLocaleString();
-
-  if (!post) {
-    notFound();
+  if (!work) {
+    return <div>Work not found</div>;
   }
 
   return (
     <div>
-      <h1>{post.title}</h1>
-      <h2>{time}</h2>
-      <div>{parse(post.content)}</div>
+      <h1>{work.title}</h1>
+      <p>{work.description}</p>
+      <h2>Details:</h2>
+      {details.map((detail) => (
+        <p key={detail.id}>{detail.detail_text}</p>
+      ))}
     </div>
   );
 }
