@@ -4,23 +4,20 @@ import Link from "next/link";
 import React from "react";
 import Title from "./Title";
 import { works } from "@/data/works";
+import Card from "./Card";
 
 const Works = () => {
   return (
-    <main>
+    <div>
       <Title title="Works" />
-      <div className="hover:bg-gray-200 transition-transform transform hover:scale-95">
-        <ul>
+      <div className="flex gap-8 mx-auto">
           {works.map((work) => {
             return (
-              <li key={work.id}>
-                <Link href={`work/${work.id}`}>{work.title}</Link>
-              </li>
+              <Card id={work.id} image={work.image} title={work.title} description={work.description} technology={work.technology} />
             );
           })}
-        </ul>
       </div>
-    </main>
+    </div>
   );
 };
 

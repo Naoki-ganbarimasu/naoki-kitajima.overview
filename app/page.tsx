@@ -23,20 +23,20 @@ const App: React.FC = () => {
 
 const MainContent: React.FC = () => {
   return (
-    <main className="flex flex-col w-full h-screen">
-      <div className="flex-grow">
+    <main className="flex flex-col w-full h-screen bg-gray-200">
+      <div className="mb-5">
         <Three />
       </div>
-      <div className="flex-grow">
+      <div className="mx-5">
         <Profile />
       </div>
-      <div className="flex-grow">
+      <div className="mx-5">
         <Skills />
       </div>
-      <div className="flex-grow">
+      <div className="mx-5">
         <Works />
       </div>
-      <div className="flex-grow">
+      <div className="mx-5">
         <Active />
       </div>
     </main>
