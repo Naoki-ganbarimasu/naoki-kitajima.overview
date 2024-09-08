@@ -1,28 +1,41 @@
-"use strict";
+"use client";
 
-import { useRouter } from "next/router";
 import { works } from "@/data/works";
 import { workDetails } from "@/data/worksDetails";
 
-export default function WorkPage() {
-  const router = useRouter();
-  const { id } = router.query;
+type WorkPageProps = {
+  params: {
+    id: string;
+  };
+};
 
-  const work = works.find((work) => work.id === Number(id));
+export default function WorkPage({ params }: WorkPageProps) {
+  const { id } = params;
+
+  // IDに基づいてデータを取得
+  const selectedWorks = works.filter((work) => work.id === Number(id));
   const details = workDetails.filter((detail) => detail.work_id === Number(id));
 
-  if (!work) {
-    return <div>Work not found</div>;
-  }
+  // if (selectedWorks) {
+  //   return <div className="mt-10 text-center text-red-500">Work not found</div>;
+  // }
 
   return (
-    <div>
-      <h1>{work.title}</h1>
-      <p>{work.description}</p>
-      <h2>Details:</h2>
-      {details.map((detail) => (
-        <p key={detail.id}>{detail.detail_text}</p>
+    <div className="mt-72 p-4">
+      {selectedWorks.map((work) => (
+        <div key={work.id}>
+          <h1 className="text-2xl font-bold mb-4">{work.title}</h1>
+          <p className="mb-6">{work.description}</p>
+        </div>
       ))}
+      <h2 className="text-xl font-semibold mb-2">Details:</h2>
+      <div className="space-y-2">
+        {details.map((detail) => (
+          <p key={detail.id} className="text-gray-700">
+            {detail.detail_text}
+          </p>
+        ))}
+      </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ const App: React.FC = () => {
 
 const MainContent: React.FC = () => {
   return (
-    <main className="flex flex-col w-full h-screen bg-gray-200">
+    <main className="flex flex-col w-full h-screen">
       <div className="mb-5">
         <Three />
       </div>

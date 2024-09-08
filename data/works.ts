@@ -14,7 +14,7 @@ export const works: Work[] = [
     image: "sns-app",
     title: "SNS App",
     description:
-      "よくあるSNSアプリです。技術の入りがフロントエンドで個人開発をしていくうちにバックエンドの方にも興味を持ち、バックエンドの実装もしてアプリケーションの全体を理解するために作成しました。実際に友人に使ってもらいフィードバックをもとに、UIの改善や機能の追加なども行いました。",
+            "よくあるSNSアプリです。アプリケーションの全体の知識をつけるために作成しました。実際に友人に使ってもらいフィードバックをもとに、UIの改善や機能の追加なども行いました。",
     technology: "Next.js, React, TypeScript, Prisma, PostgreSQL, Vercel"
   },
   {
