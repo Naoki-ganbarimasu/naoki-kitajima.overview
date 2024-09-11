@@ -1,7 +1,7 @@
 // works.ts
 
 export interface Work {
-  id: number;
+  id: string;
   image: string;
   title: string;
   description: string;
@@ -10,7 +10,7 @@ export interface Work {
 
 export const works: Work[] = [
   {
-    id: 1,
+    id: "1",
     image: "sns-app",
     title: "SNS App",
     description:
@@ -18,7 +18,7 @@ export const works: Work[] = [
     technology: "Next.js, React, TypeScript, Prisma, PostgreSQL, Vercel"
   },
   {
-    id: 2,
+    id: "2",
     image: "naotech",
     title: "Naotech Academy",
     description:
