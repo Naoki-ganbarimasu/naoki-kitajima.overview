@@ -31,7 +31,6 @@ export default function Header() {
           Contact
         </Button>
         <Sheet>
-          <SheetTrigger asChild>
             <Button
               variant="outline"
               size="icon"
@@ -40,11 +39,6 @@ export default function Header() {
               <MenuIcon className="h-6 w-6" />
               <span className="sr-only">Toggle navigation</span>
             </Button>
-          </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="w-64 sm:w-80 bg-[#00b894] shadow-md"
-          >
             <div className="flex flex-col gap-6 p-6">
               <NavLink href="#" label="Top" />
               <NavLink href="#" label="Profile" />
@@ -57,7 +51,6 @@ export default function Header() {
                 Contact
               </Button>
             </div>
-          </SheetContent>
         </Sheet>
       </div>
     </header>
