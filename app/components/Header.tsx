@@ -29,18 +29,21 @@ export default function Header() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
+          <a href="#" className="text-sm font-semibold leading-6 text-white">
+            Profile
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+          <a href="#" className="text-sm font-semibold leading-6 text-white">
+            Skills
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+          <a href="#" className="text-sm font-semibold leading-6 text-white">
+            Works
+          </a>
+          <a href="#" className="text-sm font-semibold leading-6 text-white">
+            Active
           </a>
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <a href="#" className="text-sm font-semibold leading-6 text-white">
             Contact <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
