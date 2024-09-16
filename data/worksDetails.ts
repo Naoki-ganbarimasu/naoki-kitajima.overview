@@ -51,7 +51,7 @@ export const workDetailsArray: WorkDetail[] = [
     reasonTitle1: "",
     reason1: "",
     appUrl: "https://naotech-academy.vercel.app/",
-    githubUrl: ""
+    githubUrl: "https://github.com/Naoki-ganbarimasu/naotech-academy"
   }
   // 追加のデータ...
 ];
