@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className="fixed w-full items-center justify-between bg-[#189f43]">
+    <header className="fixed w-full items-center justify-between bg-[#189f43] transition-transform transform z-50">
       <nav
         aria-label="Global"
         className="flex w-full items-center justify-between p-6 lg:px-8"
@@ -29,16 +29,28 @@ export default function Header() {
           </button>
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a
+            href="#Profile"
+            className="text-sm font-semibold leading-6 text-white"
+          >
             Profile
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a
+            href="#Skills"
+            className="text-sm font-semibold leading-6 text-white"
+          >
             Skills
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a
+            href="#Works"
+            className="text-sm font-semibold leading-6 text-white"
+          >
             Works
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-white">
+          <a
+            href="#Active"
+            className="text-sm font-semibold leading-6 text-white"
+          >
             Active
           </a>
         </PopoverGroup>
@@ -73,29 +85,32 @@ export default function Header() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 <a
-                  href="#"
+                  href="#Profile"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  Profile
                 </a>
                 <a
-                  href="#"
+                  href="#Skills"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Marketplace
+                  Skills
                 </a>
                 <a
-                  href="#"
+                  href="#Works"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  Works
+                </a>
+                <a
+                  href="#Active"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Active
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
+                <a className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Contact
                 </a>
               </div>
