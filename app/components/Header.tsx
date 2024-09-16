@@ -2,6 +2,7 @@
 
 import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Header() {
@@ -15,7 +16,9 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <p className="font-bold text-lg text-white">Naoki Portfolio</p>
+            <Link href="/">
+              <p className="font-bold text-lg text-white">Naoki Portfolio</p>
+              </Link>
           </a>
         </div>
         <div className="flex lg:hidden">
