@@ -11,6 +11,7 @@ const Works = () => {
         {works.map((work) => {
           return (
             <WorkCard
+              key={work.id}
               id={work.id}
               image={work.image}
               title={work.title}

@@ -23,7 +23,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
 }) => {
   const query = works;
   return (
-    <div className="card card-compact bg-base-100 w-96 shadow-xl transition-transform transform hover:scale-95">
+    <div className="card card-compact bg-base-100 w-96 shadow-xl transition-transform transform hover:scale-95 flex-wrap">
       <Link
         href={{
           pathname: `/work/${id}`,
@@ -31,7 +31,6 @@ const WorkCard: React.FC<WorkCardProps> = ({
       >
         <figure>
           <Image
-            className="hover:scale-x-95"
             src={`/${image}.png`}
             alt="work-image"
             width={300}
@@ -44,7 +43,7 @@ const WorkCard: React.FC<WorkCardProps> = ({
           <p className="font-bold">仕様技術</p>
           <p>{technology}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-success">詳しく見る</button>
+            <button className="btn btn-success text-white">詳しく見る</button>
           </div>
         </div>
       </Link>

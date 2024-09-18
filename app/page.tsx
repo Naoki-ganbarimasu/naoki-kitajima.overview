@@ -38,7 +38,7 @@ const MainContent: React.FC = () => {
         <Works />
       </div>
       <div id="Active" className="mx-5">
-        {/* <Active /> */}
+        <Active />
       </div>
       <Footer />
     </main>
